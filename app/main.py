@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 from typing import Optional
 from pydantic import BaseModel
-import JSON
+#import JSON
 import boto3
 
 app = FastAPI()
@@ -91,12 +91,12 @@ def patch_item(item_id: int, item: Item):
 
 
 # Incorporate with boto3: simpler than the `requests` library:
- @app.get("/aws/s3")
- def fetch_buckets():
-     s3 = boto3.client("s3")
-     response = s3.list_buckets()
-     buckets = response['Buckets']
-     return {"buckets": buckets}
+# @app.get("/aws/s3")
+ #def fetch_buckets():
+  #   s3 = boto3.client("s3")
+  #   response = s3.list_buckets()
+  #   buckets = response['Buckets']
+   #  return {"buckets": buckets}
 
 import os
 import MySQLdb
@@ -105,3 +105,10 @@ DBHOST = os.environ.get('DBHOST')
 DBUSER = os.environ.get('DBUSER')
 DBPASS = os.environ.get('DBPASS')
 DB = "fhy5uh"
+
+# Added multiplication
+@app.get("/multiply/{number_1}/{number_2}")
+def multiply_me(number_1: int, number_2: int):
+    product = number_1 * number_2
+    return {"product": product}
+    
