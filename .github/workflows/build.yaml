@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ vaibhavjha06 }}/fastapi-demo
+  IMAGE_NAME: vaibhavjha06/fastapi-demo
   IMAGE_TAG: 1.${{ github.run_number }} # GITHUB_RUN_NUMBER
 
 jobs:
