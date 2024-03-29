@@ -97,3 +97,11 @@ def patch_item(item_id: int, item: Item):
      response = s3.list_buckets()
      buckets = response['Buckets']
      return {"buckets": buckets}
+
+import os
+import MySQLdb
+from fastapi.staticfiles import StaticFiles
+DBHOST = os.environ.get('DBHOST')
+DBUSER = os.environ.get('DBUSER')
+DBPASS = os.environ.get('DBPASS')
+DB = "fhy5uh"
