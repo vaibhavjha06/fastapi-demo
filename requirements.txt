@@ -6,4 +6,3 @@ uvicorn
 boto3
 redis
 mysqlclient
-python3
