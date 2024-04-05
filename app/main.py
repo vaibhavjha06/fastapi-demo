@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+import os
+import MySQLdb
+from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI
 from typing import Optional
 from pydantic import BaseModel
@@ -7,6 +10,13 @@ from pydantic import BaseModel
 import boto3
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
+
+DBHOST = os.environ.get('DBHOST')
+DBUSER = os.environ.get('DBUSER')
+DBPASS = os.environ.get('DBPASS')
+DB = "fhy5uh"  # replace with your UVA computing ID / database name
 
 # The URL for this API has a /docs endpoint that lets you see and test
 # your various endpoints/methods.
@@ -97,18 +107,4 @@ def patch_item(item_id: int, item: Item):
   #   response = s3.list_buckets()
   #   buckets = response['Buckets']
    #  return {"buckets": buckets}
-
-import os
-import MySQLdb
-from fastapi.staticfiles import StaticFiles
-DBHOST = os.environ.get('DBHOST')
-DBUSER = os.environ.get('DBUSER')
-DBPASS = os.environ.get('DBPASS')
-DB = "fhy5uh"
-
-# Added multiplication
-@app.get("/multiply/{number_1}/{number_2}")
-def multiply_me(number_1: int, number_2: int):
-    product = number_1 * number_2
-    return {"product": product}
     
